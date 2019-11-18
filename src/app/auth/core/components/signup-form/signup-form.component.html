@@ -1,0 +1,25 @@
+<form [formGroup]="signupFG" (ngSubmit)="onSignup()">
+    <div class="example-container">
+        <mat-form-field style="width: 100%;">
+            <mat-select placeholder="Soy" formControlName="role">
+                <mat-option value="0">Reciclador</mat-option>
+                <mat-option value="1">Usuario</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <input matInput placeholder="Nombres" formControlName="name">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <input matInput placeholder="Apellidos" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <input matInput placeholder="Correo Electrónico" formControlName="email">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <input matInput type="password" placeholder="Contraseña" formControlName="password">
+        </mat-form-field>
+        <div>
+            <button type="submit" mat-raised-button color="primary" style="width: 100%;">Regístrarme</button>
+        </div>
+    </div>
+</form>
