@@ -11,8 +11,12 @@ const routes: Routes = [
         loadChildren:() => import('src/app/admin/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'users',
-        loadChildren:() => import('src/app/admin/users/users.module').then(m => m.UsersModule)
+        path: 'recyclable-materials',
+        loadChildren:() => import('src/app/admin/recyclable-materials/recyclable-materials.module').then(m => m.RecyclableMaterialsModule)
+      },
+      {
+        path: 'purchases',
+        loadChildren:() => import('src/app/admin/purchases/purchases.module').then(m => m.PurchasesModule)
       }
     ]
   }

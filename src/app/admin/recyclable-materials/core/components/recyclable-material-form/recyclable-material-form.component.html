@@ -1,0 +1,22 @@
+<h2 mat-dialog-title *ngIf="!recyclableMaterialId">Agregar material</h2>
+<h2 mat-dialog-title *ngIf="recyclableMaterialId">Editar material</h2>
+<form [formGroup]="recyclableMaterialFG" (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="mat-typography">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="Nombres" formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Peso en kg" formControlName="weight">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Precio" formControlName="price">
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="text-align: right;">
+        <a *ngIf="recyclableMaterialId" mat-button routerLink="/users">Cancelar</a>
+        <a *ngIf="!recyclableMaterialId" mat-button mat-dialog-close>Cancelar</a>
+        <button type="button" mat-button [mat-dialog-close]="true">Agregar</button>
+    </mat-dialog-actions>
+</form>

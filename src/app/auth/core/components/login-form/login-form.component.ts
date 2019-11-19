@@ -19,7 +19,6 @@ export class LoginFormComponent implements OnInit {
   reset(){
     this.loading = false;
     this.loginFG = this.fb.group({
-      role: ['',[Validators.required]],
       email: ['',[Validators.email]],
       password: ['',[Validators.required]],
     })
@@ -34,12 +33,7 @@ export class LoginFormComponent implements OnInit {
     if(this.loginFG.valid) this.router.navigateByUrl('/');
     //delete up
     if(this.loginFG.valid){
-      const loginRequest = {
-        code: this.loginFG.value.code,
-        email: this.loginFG.value.email,
-        password: this.loginFG.value.password
-      }
-
+      const loginRequest = Object.assign({}, this.loginFG.value);
       this.loading = true;
       this.authService.login(loginRequest)
         .subscribe(

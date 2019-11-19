@@ -1,0 +1,33 @@
+<h2 mat-dialog-title *ngIf="!purchaseId">Agregar compra</h2>
+<h2 mat-dialog-title *ngIf="purchaseId">Editar compra</h2>
+<form [formGroup]="purchaseFG" (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="mat-typography">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Tipo de pago" formControlName="paymentType">
+                    <mat-option value="0">Efectivo</mat-option>
+                    <mat-option value="1">Tarjeta</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Monto" formControlName="amount">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Material" formControlName="recyclableMaterialId">
+                    <mat-option value="0">Cartón</mat-option>
+                    <mat-option value="1">Papel</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="text-align: right;">
+        <a *ngIf="purchaseId" mat-button routerLink="/users">Cancelar</a>
+        <a *ngIf="!purchaseId" mat-button mat-dialog-close>Cancelar</a>
+        <button type="button" mat-button [mat-dialog-close]="true">Agregar</button>
+    </mat-dialog-actions>
+</form>
