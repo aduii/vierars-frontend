@@ -9,7 +9,11 @@ export class UserService {
   ) { }
 
   createUser(request: any) {
-    return this.apiService.post('api/user', request);
+    request.puntos = 0;
+    request.direccion = '';
+    var districtId = request.districtId;
+    delete request.districtId;
+    return this.apiService.post(`usuarios/${districtId}/insertar`, request);
   }
 
   updateUser(request: any) {

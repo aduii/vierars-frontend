@@ -1,22 +1,27 @@
 <form [formGroup]="signupFG" (ngSubmit)="onSignup()">
     <div class="example-container">
         <mat-form-field style="width: 100%;">
-            <mat-select placeholder="Soy" formControlName="role">
+            <mat-select placeholder="Soy" formControlName="tipo">
                 <mat-option value="0">Reciclador</mat-option>
                 <mat-option value="1">Usuario</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field style="width: 100%;">
-            <input matInput placeholder="Nombres" formControlName="name">
+            <input matInput placeholder="Nombres" formControlName="nombre">
         </mat-form-field>
         <mat-form-field style="width: 100%;">
-            <input matInput placeholder="Apellidos" formControlName="lastName">
+            <input matInput placeholder="Apellidos" formControlName="apellidos">
         </mat-form-field>
         <mat-form-field style="width: 100%;">
             <input matInput placeholder="Correo Electrónico" formControlName="email">
         </mat-form-field>
         <mat-form-field style="width: 100%;">
             <input matInput type="password" placeholder="Contraseña" formControlName="password">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <mat-select placeholder="Distrito" formControlName="districtId">
+                <mat-option *ngFor="let dis of distritos" [value]="dis.idDistrito">{{dis.nombre}}</mat-option>
+            </mat-select>
         </mat-form-field>
         <div>
             <button type="submit" mat-raised-button color="primary" style="width: 100%;">Regístrarme</button>

@@ -12,23 +12,36 @@ export class SignupFormComponent implements OnInit {
 
   public signupFG: FormGroup;
   public loading: boolean;
+  public distritos: any[];
 
   constructor(private fb: FormBuilder, private authService: AuthService,
-    private router: Router) { }
+    private router: Router,) { }
 
   reset(){
     this.loading = false;
     this.signupFG = this.fb.group({
-      role: ['',[Validators.required]],
-      name: ['',[Validators.required]],
-      lastName: ['',[Validators.required]],
+      tipo: ['',[Validators.required]],
+      nombre: ['',[Validators.required]],
+      apellidos: ['',[Validators.required]],
       email: ['',[Validators.email]],
       password: ['',[Validators.required]],
-    })
+      districtId: ['',[Validators.required]],
+    });
+    this.distritos = [];
+  }
+
+  getDistritos(){
+    this.authService.getDistricts().subscribe(
+      (response: any) =>{
+        this.distritos = response;
+        console.log('distri', this.distritos);
+      }
+    );
   }
 
   ngOnInit() {
     this.reset();
+    this.getDistritos();
   }
 
   onSignup(){
@@ -38,7 +51,7 @@ export class SignupFormComponent implements OnInit {
       this.authService.signup(signupRequest)
         .subscribe(
           (response: any) => {
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/auth');
             this.loading = false;
           },
           (error: any) => {

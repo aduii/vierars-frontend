@@ -10,7 +10,15 @@ export class AuthService {
 		return this.api.post('auth/login', request);
 	}
 
+	getDistricts(){
+		return this.api.get('distrito/listar');
+	}
+
 	signup(request: any){
-		return this.api.post('auth/signup', request);
+		request.puntos = 0;
+		request.direccion = '';
+		var districtId = request.districtId;
+		delete request.districtId;
+		return this.api.post(`usuarios/${districtId}/insertar`, request);
 	}
 }
