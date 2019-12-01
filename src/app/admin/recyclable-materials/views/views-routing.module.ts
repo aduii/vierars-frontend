@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecyclableMaterialListViewComponent } from './recyclable-material-list-view/recyclable-material-list-view.component';
 import { EditRecyclableMaterialViewComponent } from './edit-recyclable-material-view/edit-recyclable-material-view.component';
+import { DetailRecyclableMaterialViewComponent } from './detail-recyclable-material-view/detail-recyclable-material-view.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditRecyclableMaterialViewComponent
+  },
+  {
+    path: 'detail/:id',
+    component: DetailRecyclableMaterialViewComponent
   }
 ];
 

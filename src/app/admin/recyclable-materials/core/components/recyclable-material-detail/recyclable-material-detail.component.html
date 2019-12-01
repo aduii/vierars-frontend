@@ -1,0 +1,36 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"
+      [ngStyle]="{'background-image': 'url(' + recyclableMaterial.foto + ')'}"></div>
+      <mat-card-title>{{recyclableMaterial.nombre}}</mat-card-title>
+      <mat-card-subtitle>{{recyclableMaterial.descripcion}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            <strong>Precio: </strong>
+            <span>{{recyclableMaterial.precio}}</span>
+        </p>
+        <p>
+            <strong>Peso (Kg): </strong>
+            <span>{{recyclableMaterial.peso}}</span>
+        </p>
+        <hr>
+        <p>Datos del usuario:</p>
+        <p>
+            <strong>Nombre: </strong>
+            <span>{{recyclableMaterial.usuario.nombre}} {{recyclableMaterial.usuario.apellidos}}</span>
+        </p>
+        <p>
+            <strong>Email: </strong>
+            <span>{{recyclableMaterial.usuario.email}}</span>
+        </p>
+        <p>
+            <strong>Dirección: </strong>
+            <span>{{recyclableMaterial.usuario.direccion}}</span>
+        </p>
+    </mat-card-content>
+    <mat-card-actions style="text-align: right">
+      <button mat-button>COMPRAR</button>
+    </mat-card-actions>
+</mat-card>
+  

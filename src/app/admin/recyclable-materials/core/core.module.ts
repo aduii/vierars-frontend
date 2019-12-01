@@ -5,11 +5,13 @@ import { CoreModule as AppCoreModule } from '../../../core/core.module';
 import { SharedModule as AppSharedModule } from '../../../shared/shared.module';
 import { RecyclableMaterialFormComponent } from './components/recyclable-material-form/recyclable-material-form.component';
 import { RecyclableMaterialTableComponent } from './components/recyclable-material-table/recyclable-material-table.component';
+import { RecyclableMaterialDetailComponent } from './components/recyclable-material-detail/recyclable-material-detail.component';
 
 @NgModule({
   declarations: [
     RecyclableMaterialFormComponent,
-    RecyclableMaterialTableComponent
+    RecyclableMaterialTableComponent,
+    RecyclableMaterialDetailComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { RecyclableMaterialTableComponent } from './components/recyclable-materi
   ],
   exports: [
     RecyclableMaterialFormComponent,
-    RecyclableMaterialTableComponent
+    RecyclableMaterialTableComponent,
+    RecyclableMaterialDetailComponent
   ],
   entryComponents: [
     RecyclableMaterialFormComponent

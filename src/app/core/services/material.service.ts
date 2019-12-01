@@ -31,8 +31,8 @@ export class MaterialService {
     return this.apiService.put('materialreciclado/user', request);
   }
 
-  getMaterialById(userId: number) {
-    return this.apiService.get(`materialreciclado/user/byId/${userId}`);
+  getMaterialById(id: number) {
+    return this.apiService.get(`materialreciclado/${id}`);
   }
 
   refreshList(status:boolean){
