@@ -3,40 +3,24 @@
 </div>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" style="width: 100%;">
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="fecha">
         <th mat-header-cell *matHeaderCellDef> Fecha </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | date}} </td>
     </ng-container>
-    <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef> Usuario </th>
-        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.materialReciclado.nombre}} </td>
     </ng-container>
-    <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Correo </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef> Tipo de pago </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipo_de_pago}} </td>
     </ng-container>
-    <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Rol </th>
-        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-    </ng-container>
-    <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <ng-container matColumnDef="monto">
+        <th mat-header-cell *matHeaderCellDef> Monto </th>
         <td mat-cell *matCellDef="let element">
             <mat-chip-list>
-                <mat-chip>{{element.status}}</mat-chip>
+                <mat-chip>{{element.monto_total}}</mat-chip>
             </mat-chip-list>
-        </td>
-    </ng-container>
-    <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-                <a mat-menu-item [routerLink]="['edit', element.id]">Editar</a>
-                <button mat-menu-item> Eliminar</button>
-            </mat-menu>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

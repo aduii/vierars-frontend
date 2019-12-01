@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MaterialService } from 'src/app/core/services/material.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RecyclableMaterialPurchaseComponent } from '../recyclable-material-purchase/recyclable-material-purchase.component';
 
 @Component({
   selector: 'recyclable-material-detail',
@@ -14,7 +16,8 @@ export class RecyclableMaterialDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private materialService: MaterialService
+    private materialService: MaterialService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -33,6 +36,19 @@ export class RecyclableMaterialDetailComponent implements OnInit {
         console.log('error', error);
       }
     )
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RecyclableMaterialPurchaseComponent, {
+      width: '50%',
+      data: {
+        info: this.recyclableMaterial
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.status) console.log('update list')
+    });
   }
 
 }

@@ -54,4 +54,17 @@ export class MaterialService {
   listenerResetForm(): Observable<any>{
     return this.subjectForm.asObservable();
   }
+
+  createPurchase(request: any, data: any){
+    var recyclerId = (JSON.parse(localStorage.getItem('userLogged'))).idUsuario;
+    return this.apiService.post(`compra/${recyclerId}/${data.userId}/${data.materialId}/insertar`, request);
+  }
+
+  getSales(){
+    return this.apiService.get('compra/listar');
+  }
+
+  getPurchases(){
+    return this.apiService.get('compra/listar');
+  }
 }

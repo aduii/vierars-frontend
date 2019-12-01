@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Compra</h2>
+<form [formGroup]="purchaseFG" (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="mat-typography">
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="fecha">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Tipo de pago" formControlName="tipo_de_pago">
+                    <mat-option value="Efectivo">Efectivo</mat-option>
+                    <mat-option value="Tarjeta">Tarjeta</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Monto" formControlName="monto_total">
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="text-align: right;">
+        <a mat-button [mat-dialog-close]="true">Cancelar</a>
+        <button type="submit" mat-button [mat-dialog-close]="true">COMPRAR</button>
+    </mat-dialog-actions>
+</form>
