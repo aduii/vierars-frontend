@@ -11,6 +11,10 @@ export class MaterialService {
     private apiService: ApiService
   ) { }
 
+  getTypes(){
+    return this.apiService.get('tipo/listar');
+  }
+
   createMaterial(request: any) {
     var type = request.tipo;
     var userId = 1;

@@ -12,6 +12,7 @@ import { MaterialService } from 'src/app/core/services/material.service';
 export class RecyclableMaterialFormComponent implements OnInit {
   public recyclableMaterialFG: FormGroup;
   public recyclableMaterialId: number;
+  public types = [];
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -31,9 +32,17 @@ export class RecyclableMaterialFormComponent implements OnInit {
     this.recyclableMaterialId = null;
   }
 
+  getTypes(){
+    this.materialService.getTypes().subscribe(
+      (response: any) =>{
+        this.types = response;
+      }
+    )
+  }
 
   ngOnInit() {
     this.reset();
+    this.getTypes();
     this.route.params.subscribe((params: Params) => {
       this.recyclableMaterialId = params.id;
       if(this.recyclableMaterialId) this.getRecyclableMaterial();

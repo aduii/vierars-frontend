@@ -5,8 +5,7 @@
         <div class="example-container">
             <mat-form-field>
                 <mat-select placeholder="Tipo" formControlName="tipo">
-                    <mat-option value="0">Acero</mat-option>
-                    <mat-option value="1">Vidrio</mat-option>
+                    <mat-option *ngFor="let type of types" [value]="type.idTipo">{{type.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
