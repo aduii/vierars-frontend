@@ -7,7 +7,7 @@ export class AuthService {
 	constructor(public api: ApiService){}
 
 	login(request: any){
-		return this.api.post('auth/login', request);
+		return this.api.post('userlogin', request);
 	}
 
 	getDistricts(){

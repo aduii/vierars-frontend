@@ -17,11 +17,10 @@ export class MaterialService {
 
   createMaterial(request: any) {
     var type = request.tipo;
-    var userId = 1;
+    var user = JSON.parse(localStorage.getItem('userLogged'));
     delete request.tipo;
     delete request.id;
-    console.log('request', request);
-    return this.apiService.post(`materialreciclado/${userId}/${type}/insertar`, request);
+    return this.apiService.post(`materialreciclado/${user.idUsuario}/${type}/insertar`, request);
   }
 
   geMaterials() {

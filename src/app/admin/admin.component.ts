@@ -25,9 +25,7 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) {
     const userLogged = localStorage.getItem('userLogged');
-    console.log('user', userLogged);
     if(userLogged) this.user = JSON.parse(userLogged);
-    console.log('user', this.user);
   }
 
   logout() {

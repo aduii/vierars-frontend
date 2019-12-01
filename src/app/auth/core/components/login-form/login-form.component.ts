@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
   reset(){
     this.loading = false;
     this.loginFG = this.fb.group({
-      email: ['',[Validators.email]],
+      username: ['',[Validators.email]],
       password: ['',[Validators.required]],
     })
   }
@@ -28,17 +28,13 @@ export class LoginFormComponent implements OnInit {
     this.reset();
   }
   onLogin(){
-    const userLogged = Object.assign({}, this.loginFG.value);
-    localStorage.setItem('userLogged', JSON.stringify(userLogged));
-    if(this.loginFG.valid) this.router.navigateByUrl('/');
-    //delete up
     if(this.loginFG.valid){
       const loginRequest = Object.assign({}, this.loginFG.value);
       this.loading = true;
       this.authService.login(loginRequest)
         .subscribe(
           (response: any) => {
-            //localStorage.setItem('userLogged', JSON.stringify(response.data));
+            localStorage.setItem('userLogged', JSON.stringify(response));
             this.router.navigateByUrl('/');
             this.loading = false;
           },
