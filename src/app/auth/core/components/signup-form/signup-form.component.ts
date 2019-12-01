@@ -34,7 +34,6 @@ export class SignupFormComponent implements OnInit {
     this.authService.getDistricts().subscribe(
       (response: any) =>{
         this.distritos = response;
-        console.log('distri', this.distritos);
       }
     );
   }

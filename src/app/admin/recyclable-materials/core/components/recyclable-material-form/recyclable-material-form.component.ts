@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MaterialService } from 'src/app/core/services/material.service';
 
 @Component({
   selector: 'recyclable-material-form',
@@ -14,15 +15,18 @@ export class RecyclableMaterialFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private materialService: MaterialService) { }
 
   reset(){
     this.recyclableMaterialFG = this.fb.group({
       id: [],
-      name: ['',[Validators.required]],
-      weight: ['',[Validators.required]],
-      price: ['',[Validators.required]],
-      status: []
+      tipo: ['',[Validators.required]],
+      nombre: ['',[Validators.required]],
+      descripcion: ['',[Validators.required]],
+      foto: ['',[Validators.required]],
+      peso: ['',[Validators.required]],
+      precio: ['',[Validators.required]],
     });
     this.recyclableMaterialId = null;
   }
@@ -53,9 +57,9 @@ export class RecyclableMaterialFormComponent implements OnInit {
       let request: Observable<any>;
 
       if(!recyclableMaterial.id){
-        //request = this.userService.createUser(user)
+        request = this.materialService.createMaterial(recyclableMaterial)
       } else {
-        //request = this.userService.updateUser(user)
+        request = this.materialService.updateMaterial(recyclableMaterial)
       }
 
       request.subscribe(

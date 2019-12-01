@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/core/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MaterialService } from 'src/app/core/services/material.service';
 
 @Component({
   selector: 'recyclable-material-table',
@@ -11,15 +12,27 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./recyclable-material-table.component.scss']
 })
 export class RecyclableMaterialTableComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'weight', 'price', 'status', 'options'];
+  displayedColumns: string[] = ['nombre', 'peso', 'precio', 'options'];
   dataSource = new MatTableDataSource<User>();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private materialService: MaterialService
+  ) {}
+
+  getMaterials(){
+    this.materialService.geMaterials().subscribe(
+      (response: any) =>{
+        this.dataSource = response;
+        this.dataSource.paginator = this.paginator;
+      }
+    )
+  }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.getMaterials();
   }
 
   openDialog(): void {

@@ -4,19 +4,31 @@
     <mat-dialog-content class="mat-typography">
         <div class="example-container">
             <mat-form-field>
-                <input matInput placeholder="Nombres" formControlName="name">
+                <mat-select placeholder="Tipo" formControlName="tipo">
+                    <mat-option value="0">Acero</mat-option>
+                    <mat-option value="1">Vidrio</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Peso en kg" formControlName="weight">
+                <input matInput placeholder="Nombre" formControlName="nombre">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Precio" formControlName="price">
+                <input matInput placeholder="Descripción" formControlName="descripcion">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Foto" formControlName="foto">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Peso (kg)" formControlName="peso">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Precio" formControlName="precio">
             </mat-form-field>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end" style="text-align: right;">
-        <a *ngIf="recyclableMaterialId" mat-button routerLink="/users">Cancelar</a>
+        <a *ngIf="recyclableMaterialId" mat-button routerLink="/recyclable-materials">Cancelar</a>
         <a *ngIf="!recyclableMaterialId" mat-button mat-dialog-close>Cancelar</a>
-        <button type="button" mat-button [mat-dialog-close]="true">Agregar</button>
+        <button type="submit" mat-button [mat-dialog-close]="true">Agregar</button>
     </mat-dialog-actions>
 </form>
