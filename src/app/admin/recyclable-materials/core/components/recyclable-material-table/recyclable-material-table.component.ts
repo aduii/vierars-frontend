@@ -5,6 +5,7 @@ import { User } from 'src/app/core/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MaterialService } from 'src/app/core/services/material.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'recyclable-material-table',
@@ -14,6 +15,7 @@ import { MaterialService } from 'src/app/core/services/material.service';
 export class RecyclableMaterialTableComponent implements OnInit {
   displayedColumns: string[] = ['nombre', 'peso', 'precio', 'options'];
   dataSource = new MatTableDataSource<User>();
+  user: User;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -28,12 +30,24 @@ export class RecyclableMaterialTableComponent implements OnInit {
   }
 
   getMaterials(){
-    this.materialService.geMaterials().subscribe(
-      (response: any) =>{
+    this.user = JSON.parse(localStorage.getItem('userLogged'));
+    let request: Observable<any>;
+
+    if(this.user.tipo == 0){
+      request = this.materialService.geMaterialsByUser()
+    } else {
+      request = this.materialService.geMaterialsByRecycler()
+    }
+
+    request.subscribe(
+      (response: any)=>{
         this.dataSource = response;
         this.dataSource.paginator = this.paginator;
+      },
+      (error: any)=>{
+        console.log('error', error);
       }
-    )
+    );
   }
 
   ngOnInit() {

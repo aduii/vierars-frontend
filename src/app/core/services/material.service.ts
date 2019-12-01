@@ -23,12 +23,16 @@ export class MaterialService {
     return this.apiService.post(`materialreciclado/${user.idUsuario}/${type}/insertar`, request);
   }
 
-  geMaterials() {
-    return this.apiService.get('materialreciclado/listar');
+  geMaterialsByRecycler() {
+    return this.apiService.get('materialreciclado/sinvender');
+  }
+
+  geMaterialsByUser() {
+    return this.apiService.get('materialreciclado/sinvender');
   }
 
   updateMaterial(request: any) {
-    return this.apiService.put('materialreciclado/user', request);
+    return this.apiService.put('materialreciclado', request);
   }
 
   getMaterialById(id: number) {
