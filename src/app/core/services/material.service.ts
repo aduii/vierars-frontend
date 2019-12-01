@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable()
 export class MaterialService {
+  private subjectList = new Subject<any>();
+  private subjectForm = new Subject<any>();
 
   constructor(
     private apiService: ApiService
@@ -27,5 +30,21 @@ export class MaterialService {
 
   getMaterialById(userId: number) {
     return this.apiService.get(`materialreciclado/user/byId/${userId}`);
+  }
+
+  refreshList(status:boolean){
+    this.subjectList.next({status});
+  }
+
+  listenerRefreshList(): Observable<any>{
+    return this.subjectList.asObservable();
+  }
+
+  resetForm(){
+    this.subjectForm.next(true);
+  }
+
+  listenerResetForm(): Observable<any>{
+    return this.subjectForm.asObservable();
   }
 }

@@ -20,7 +20,12 @@ export class RecyclableMaterialTableComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private materialService: MaterialService
-  ) {}
+  ) {
+    this.materialService.listenerRefreshList()
+    .subscribe( status => {
+      if(status) this.getMaterials();
+    })
+  }
 
   getMaterials(){
     this.materialService.geMaterials().subscribe(

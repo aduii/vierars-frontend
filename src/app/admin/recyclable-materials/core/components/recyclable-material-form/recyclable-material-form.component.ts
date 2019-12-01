@@ -64,7 +64,7 @@ export class RecyclableMaterialFormComponent implements OnInit {
 
       request.subscribe(
         (response: any)=>{
-          if (!recyclableMaterial.id) console.log('refresh list');
+          if (!recyclableMaterial.id) this.materialService.refreshList(true);
           if (recyclableMaterial.id) this.router.navigate(['/recyclable-materials']);
         },
         (error: any)=>{
