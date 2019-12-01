@@ -28,7 +28,8 @@ export class MaterialService {
   }
 
   geMaterialsByUser() {
-    return this.apiService.get('materialreciclado/sinvender');
+    var user = JSON.parse(localStorage.getItem('userLogged'));
+    return this.apiService.get(`materialreciclado/${user.idUsuario}/listar`);
   }
 
   updateMaterial(request: any) {
