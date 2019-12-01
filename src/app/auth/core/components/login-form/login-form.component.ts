@@ -34,8 +34,10 @@ export class LoginFormComponent implements OnInit {
       this.authService.login(loginRequest)
         .subscribe(
           (response: any) => {
-            localStorage.setItem('userLogged', JSON.stringify(response));
-            this.router.navigateByUrl('/');
+            if(response){
+              localStorage.setItem('userLogged', JSON.stringify(response));
+              this.router.navigateByUrl('/');
+            }
             this.loading = false;
           },
           (error: any) => {

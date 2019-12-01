@@ -6,12 +6,12 @@ const routes: Routes = [
   {
     path: '', component: AdminComponent,
     children: [
-      {
+      /* {
         path: '',
         loadChildren:() => import('src/app/admin/dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
+      }, */
       {
-        path: 'recyclable-materials',
+        path: '',
         loadChildren:() => import('src/app/admin/recyclable-materials/recyclable-materials.module').then(m => m.RecyclableMaterialsModule)
       },
       {

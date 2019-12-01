@@ -3,19 +3,18 @@
 		[attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
 		[mode]="(isHandset$ | async) ? 'over' : 'side'"
 		[opened]="(isHandset$ | async) === false">
-		<mat-toolbar>Menú</mat-toolbar>
+		<mat-toolbar>Hola {{user.nombre}}!</mat-toolbar>
 		<mat-nav-list>
 			<a mat-list-item routerLink="/">
 				<mat-icon aria-hidden="false">dashboard</mat-icon>
 				<span style="margin-left: 5px;">Inicio</span>
 			</a>
-			<a mat-list-item routerLink="/recyclable-materials">
-				<mat-icon aria-hidden="false">eco</mat-icon>
-				<span style="margin-left: 5px;">Materiales</span>
-			</a>
 			<a mat-list-item routerLink="/purchases">
 				<mat-icon aria-hidden="false">attach_money</mat-icon>
-				<span style="margin-left: 5px;">Compras</span>
+				<span style="margin-left: 5px;">
+					<span *ngIf="user.tipo == 0">Ventas</span>
+					<span *ngIf="user.tipo == 1">Compras</span>
+				</span>
 			</a>
 			<a mat-list-item (click)="logout()">
 				<mat-icon aria-hidden="false">chevron_left</mat-icon>
