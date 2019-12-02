@@ -58,7 +58,7 @@ export class MaterialService {
 
   createPurchase(request: any, data: any){
     var recyclerId = (JSON.parse(localStorage.getItem('userLogged'))).idUsuario;
-    return this.apiService.post(`compra/${recyclerId}/${data.userId}/${data.materialId}/insertar`, request);
+    return this.apiService.post(`compra/${recyclerId}/${data.materialId}/insertar`, request);
   }
 
   getSales(){
