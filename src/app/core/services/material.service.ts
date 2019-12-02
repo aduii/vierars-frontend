@@ -66,6 +66,7 @@ export class MaterialService {
   }
 
   getPurchases(){
-    return this.apiService.get('compra/listar');
+    var recyclerId = (JSON.parse(localStorage.getItem('userLogged'))).idUsuario;
+    return this.apiService.get(`compra/${recyclerId}/listar`);
   }
 }
