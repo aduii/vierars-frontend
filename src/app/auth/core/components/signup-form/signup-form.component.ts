@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'signup-form',
@@ -14,8 +15,12 @@ export class SignupFormComponent implements OnInit {
   public loading: boolean;
   public distritos: any[];
 
-  constructor(private fb: FormBuilder, private authService: AuthService,
-    private router: Router,) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) { }
 
   reset(){
     this.loading = false;
@@ -52,6 +57,11 @@ export class SignupFormComponent implements OnInit {
           (response: any) => {
             this.router.navigateByUrl('/auth');
             this.loading = false;
+            this._snackBar.open('Buena! Ahora formas parte de Vierars 😊', '', {
+              duration: 2000,
+              verticalPosition: 'top',
+              horizontalPosition: 'right'
+            });
           },
           (error: any) => {
             this.loading = false;

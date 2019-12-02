@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'login-form',
@@ -13,8 +14,12 @@ export class LoginFormComponent implements OnInit {
   public loginFG: FormGroup;
   public loading: boolean;
 
-  constructor(private fb: FormBuilder, private authService: AuthService,
-    private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) { }
 
   reset(){
     this.loading = false;
@@ -37,6 +42,17 @@ export class LoginFormComponent implements OnInit {
             if(response){
               localStorage.setItem('userLogged', JSON.stringify(response));
               this.router.navigateByUrl('/');
+              this._snackBar.open('Bienvenido! 😊', '', {
+                duration: 2000,
+                verticalPosition: 'top',
+                horizontalPosition: 'right'
+              });
+            } else {
+              this._snackBar.open('Usuario no encontrado :(', '', {
+                duration: 2000,
+                verticalPosition: 'top',
+                horizontalPosition: 'right'
+              });
             }
             this.loading = false;
           },
