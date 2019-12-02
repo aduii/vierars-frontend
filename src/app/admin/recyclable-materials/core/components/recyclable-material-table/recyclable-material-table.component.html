@@ -23,12 +23,12 @@
     <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-            <button mat-icon-button [matMenuTriggerFor]="menu">
+            <a *ngIf="user.tipo == 1" mat-raised-button color="primary" [routerLink]="['detail', element.idMaterialRreciclado]">Mostrar</a>
+            <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="user.tipo != 1">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <a *ngIf="user.tipo == 1" mat-menu-item [routerLink]="['detail', element.idMaterialRreciclado]">Mostrar</a>
-                <a *ngIf="user.tipo != 1" mat-menu-item [routerLink]="['edit', element.idMaterialRreciclado]">Editar</a>
+                <a mat-menu-item [routerLink]="['edit', element.idMaterialRreciclado]">Editar</a>
             </mat-menu>
         </td>
     </ng-container>

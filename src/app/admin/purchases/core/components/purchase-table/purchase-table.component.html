@@ -1,5 +1,6 @@
 <div style="margin: 8px 0; display: flex; justify-content:space-between">
-    <h3 style="margin: 0;">Compras</h3>
+    <h3 style="margin: 0;" *ngIf="user.tipo == 1">Compras</h3>
+    <h3 style="margin: 0;" *ngIf="user.tipo != 1">Ventas</h3>
 </div>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" style="width: 100%;">

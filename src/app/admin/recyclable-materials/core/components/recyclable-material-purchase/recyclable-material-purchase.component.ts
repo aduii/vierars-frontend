@@ -28,7 +28,7 @@ export class RecyclableMaterialPurchaseComponent implements OnInit {
     this.purchaseFG = this.fb.group({
       fecha: ['',[Validators.required]],
       tipo_de_pago: ['',[Validators.required]],
-      monto_total: ['',[Validators.required]],
+      monto_total: {value: this.material.precio, disabled: true}
     });
   }
 
@@ -39,6 +39,7 @@ export class RecyclableMaterialPurchaseComponent implements OnInit {
   onSubmit(){
     if(this.purchaseFG.valid){
       let purchase: any = Object.assign({},this.purchaseFG.value);
+      purchase.monto_total = this.material.precio;
       let data = {
         userId: this.material.usuario.idUsuario,
         materialId : this.material.idMaterialRreciclado
